@@ -1,0 +1,67 @@
+#define MAX 100
+typedef struct
+{
+ 	int mat;
+ 	int eng;
+ 	int chi;
+ 	int num;
+ 	int tot;
+}Stu;
+Stu stu[105];
+
+void Chengji()
+{
+ 	int n;
+ 	cin>>n;
+ 	for(int i=1;i<=n;i++)
+ 	{
+  		stu[i].num=i;
+  		cin>>stu[i].mat>>stu[i].eng>>stu[i].chi;
+  		stu[i].tot=stu[i].chi+stu[i].eng+stu[i].mat;
+ 	}
+ 	for(int i=1;i<n;i++)
+ 	for(int j=i+1;j<=n;j++)
+ 	{
+  		if(stu[i].tot<stu[j].tot)
+  		{
+   			Stu temp;
+   			temp=stu[i];
+   			stu[i]=stu[j];
+   			stu[j]=temp;
+  		}
+  		else if(stu[i].tot==stu[j].tot)
+  		{
+   			if(stu[i].mat<stu[j].mat)
+   			{
+    				Stu temp;
+    				temp=stu[i];
+    				stu[i]=stu[j];
+    				stu[j]=temp;
+   			}
+   			else if(stu[i].mat==stu[j].mat)
+   			{
+    				if(stu[i].eng<stu[j].eng)
+    				{
+     					Stu temp;
+     					temp=stu[i];
+     					stu[i]=stu[j];
+     					stu[j]=temp;
+    				}
+    				else if(stu[i].eng==stu[j].eng)
+    				{
+     					if(stu[i].num>stu[j].num)
+     					{
+      						Stu temp;
+      						temp=stu[i];
+      						stu[i]=stu[j];
+      						stu[j]=temp;
+     					}
+    				}
+   			}
+  		}
+ 	}
+ 	for(int i=1;i<=n;i++)
+ 	{
+  		cout<<stu[i].mat<<" "<<stu[i].eng<<" "<<stu[i].chi<<" "<<stu[i].num<<endl;
+ 	}
+}
